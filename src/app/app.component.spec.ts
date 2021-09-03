@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'AngularGraphQLClient'`, () => {
+  it(`should have as title 'pi-grupo-003'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('AngularGraphQLClient');
+    expect(app.title).toEqual('pi-grupo-003');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('AngularGraphQLClient app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('pi-grupo-003 app is running!');
   });
 });
