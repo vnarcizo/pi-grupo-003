@@ -1,3 +1,4 @@
+
 # PI-grupo-003
 
 node=v12.16.1
@@ -5,8 +6,6 @@ node=v12.16.1
 npm=6.13.4
 
 # Download Node
-
-
 
 Windows 32-bit Installer: https://nodejs.org/dist/v12.16.1/node-v12.16.1-x86.msi
 
@@ -33,5 +32,4 @@ https://pi-grupo-003.herokuapp.com/
 npm install
 
 npm start
-
 

@@ -1,29 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  public title = 'My Angular App';
-  public isAuthenticated: boolean = false;
-
-  constructor() {
-    
-  }
-
-  async ngOnInit() {
-    this.isAuthenticated = true; //await this.oktaAuth.isAuthenticated();
-  }
-
-  login() {
-    //this.oktaAuth.loginRedirect();
-  }
-
-  logout() {
-    //this.oktaAuth.logout('/');
-  }
+export class AppComponent {
+  title = 'pi-grupo-003';
 }
