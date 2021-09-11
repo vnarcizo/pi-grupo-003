@@ -31,5 +31,5 @@ https://pi-grupo-003.herokuapp.com/
 # Rodar local
 npm install
 
-npm start
+npm start 
  
