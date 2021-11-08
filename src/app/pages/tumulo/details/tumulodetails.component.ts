@@ -86,4 +86,46 @@ export class TumuloDetailsComponent implements OnInit {
     this._location.back();
   }
 
+  Salvar() {
+    console.log(this.t);
+    var str=`
+      mutation tumulo
+      {
+        update_tumulo(_set: {
+          cpf: "$cpf", 
+        data_exumacao: "$data_exumacao", 
+        data_nascimento: "$data_nascimento", 
+        data_sepultamento: "$data_sepultamento", 
+        data_obito: "$data_obito", 
+        nome: "$nome", 
+        numero_atestado_obito: "$numero_atestado_obito", 
+        numero_sepultura: "$numero_sepultura", 
+        numero_gaveta: "$numero_gaveta"}, 
+        where: {id: {_eq: "$tumulo_id"}}) {
+          returning {
+            id
+          }
+        }
+      }
+          
+      
+    `;
+   str = str.replace("$cpf",this.t.cpf);
+   str = str.replace("$data_exumacao",this.t.data_exumacao);
+   str = str.replace("$data_nascimento",this.t.data_nascimento);
+   str = str.replace("$data_sepultamento",this.t.data_sepultamento);
+   str = str.replace("$data_obito",this.t.cpf.data_obito);
+   str = str.replace("$nome",this.t.nome);
+   str = str.replace("$numero_atestado_obito",this.t.numero_atestado_obito);
+   str = str.replace("$numero_sepultura",this.t.numero_sepultura);
+   str = str.replace("$numero_gaveta",this.t.numero_gaveta);
+   str = str.replace("$tumulo_id",this.t.tumulo_id);
+
+   this.apollo.mutate({
+    mutation:  gql`${str}`
+  }).subscribe(); 
+  }
+
+
+
 }
