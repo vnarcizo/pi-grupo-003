@@ -2244,7 +2244,6 @@ pre code
     .table-responsive-sm
     {
         display: block;
-        overflow-x: auto;
 
         width: 100%;
 
