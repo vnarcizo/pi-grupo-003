@@ -11,6 +11,7 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TumuloComponent } from '../../pages/tumulo/tumulo.component';
+import { TumuloDetailsComponent } from '../../pages/tumulo/details/tumulodetails.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -27,6 +28,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DashboardComponent,
     UserProfileComponent,
     TumuloComponent,
+    TumuloDetailsComponent,
     IconsComponent,
     MapsComponent
   ]

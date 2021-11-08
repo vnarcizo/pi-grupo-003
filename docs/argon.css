@@ -2262,7 +2262,7 @@ pre code
     .table-responsive-md
     {
         display: block;
-        overflow-x: auto;
+        /* overflow-x: auto; */
 
         width: 100%;
 
@@ -2280,7 +2280,7 @@ pre code
     .table-responsive-lg
     {
         display: block;
-        overflow-x: auto;
+        /* overflow-x: auto; */
 
         width: 100%;
 
@@ -2298,7 +2298,7 @@ pre code
     .table-responsive-xl
     {
         display: block;
-        overflow-x: auto;
+        /* overflow-x: auto; */
 
         width: 100%;
 
@@ -2314,7 +2314,7 @@ pre code
 .table-responsive
 {
     display: block;
-    overflow-x: auto;
+    /* overflow-x: auto; */
 
     width: 100%;
 
@@ -19141,7 +19141,7 @@ textarea[resize='horizontal']
 .navbar-vertical .navbar-brand > img
 {
     max-width: 100%;
-    max-height: 2rem;
+    max-height: 9rem;
 }
 @media (min-width: 768px)
 {
@@ -19351,7 +19351,7 @@ textarea[resize='horizontal']
 }
 .navbar-vertical.navbar-expand-xs .navbar-brand-img
 {
-    max-height: 2.5rem;
+    max-height: 9rem;
 }
 .navbar-vertical.navbar-expand-xs .navbar-user
 {
@@ -19476,7 +19476,7 @@ textarea[resize='horizontal']
     }
     .navbar-vertical.navbar-expand-sm .navbar-brand-img
     {
-        max-height: 2.5rem;
+        max-height: 9rem;
     }
     .navbar-vertical.navbar-expand-sm .navbar-user
     {
@@ -19602,7 +19602,7 @@ textarea[resize='horizontal']
     }
     .navbar-vertical.navbar-expand-md .navbar-brand-img
     {
-        max-height: 2.5rem;
+        max-height: 9rem;
     }
     .navbar-vertical.navbar-expand-md .navbar-user
     {
@@ -19728,7 +19728,7 @@ textarea[resize='horizontal']
     }
     .navbar-vertical.navbar-expand-lg .navbar-brand-img
     {
-        max-height: 2.5rem;
+        max-height: 9rem;
     }
     .navbar-vertical.navbar-expand-lg .navbar-user
     {
@@ -19854,7 +19854,7 @@ textarea[resize='horizontal']
     }
     .navbar-vertical.navbar-expand-xl .navbar-brand-img
     {
-        max-height: 2.5rem;
+        max-height: 9rem;
     }
     .navbar-vertical.navbar-expand-xl .navbar-user
     {
