@@ -20,6 +20,7 @@ export class TumuloDetailsComponent implements OnInit {
   concessionario = {
     id: "",
     cpf: "",
+    rg: "",
     nome: "",
     cep: "",
     cidade: "",
@@ -49,6 +50,7 @@ export class TumuloDetailsComponent implements OnInit {
           numero_gaveta
           nome
           cpf
+          rg
           data_exumacao
           data_obito
           data_sepultamento
@@ -107,7 +109,8 @@ export class TumuloDetailsComponent implements OnInit {
           cep: "$cep", 
           cidade: "$cidade", 
           complemento: "$complemento", 
-          cpf: "$cpf", 
+          cpf: "$cpf",
+          rg: "$rg",
           endereco: "$endereco", 
           estado: "$estado", 
           nome: "$nome", 
@@ -121,6 +124,7 @@ export class TumuloDetailsComponent implements OnInit {
 
       strC = strC.replace("$cep",this.t.concessionario.cep);
       strC = strC.replace("$cpf",this.t.concessionario.cpf);
+      strC = strC.replace("$rg", this.t.concessionario.rg);
       strC = strC.replace("$cidade",this.t.concessionario.cidade);
       strC = strC.replace("$complemento",this.t.concessionario.complemento);
       strC = strC.replace("$endereco",this.t.concessionario.endereco);
@@ -145,8 +149,10 @@ export class TumuloDetailsComponent implements OnInit {
           cep: "$cep", 
           cidade: "$cidade", 
           complemento: "$complemento", 
-          cpf: "$cpf", 
+          cpf: "$cpf",
+          rg: "$rg",
           endereco: "$endereco", 
+          numero: "$numero",
           estado: "$estado", 
           nome: "$nome", 
           numero: "$numero"}) {
@@ -160,8 +166,11 @@ export class TumuloDetailsComponent implements OnInit {
       strConc = strConc.replace("$cidade",this.t.concessionario.cidade);
       strConc = strConc.replace("$complemento",this.t.concessionario.complemento);
       strConc = strConc.replace("$endereco",this.t.concessionario.endereco);
+      strConc = strConc.replace("$numero",this.t.concessionario.numero);
       strConc = strConc.replace("$estado",this.t.concessionario.estado);
       strConc = strConc.replace("$nome",this.t.concessionario.nome);
+      strConc = strConc.replace("$rg",this.t.concessionario.rg);
+      strConc = strConc.replace("$cpf",this.t.concessionario.cpf);
       strConc = strConc.replace("$numero",this.t.concessionario.numero);
       strConc = strConc.replace("$concessionario_id",this.t.concessionario.id);
 
@@ -192,7 +201,8 @@ export class TumuloDetailsComponent implements OnInit {
         var str=`
           mutation tumulo{
             update_tumulo(_set: {
-              cpf: "$cpf", 
+            cpf: "$cpf",
+            rg: "$rg", 
             data_exumacao: "$data_exumacao", 
             data_nascimento: "$data_nascimento", 
             data_sepultamento: "$data_sepultamento", 
@@ -212,6 +222,7 @@ export class TumuloDetailsComponent implements OnInit {
       var dateStr = new Date().getFullYear() + "-"+(new Date().getMonth()+1)+"-"+new Date().getDate();
 
       str = str.replace("$cpf",this.t.cpf);
+      str = str.replace("$rg", this.t.rg);
       
 
       if(this.t.data_nascimento == null ||this.t.data_nascimento == undefined)

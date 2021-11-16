@@ -26,6 +26,7 @@ export class TumuloComponent implements OnInit {
             numero_gaveta
             nome
             cpf
+            rg
             data_exumacao
             data_obito
             data_sepultamento
