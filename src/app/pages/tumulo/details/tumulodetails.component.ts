@@ -18,15 +18,16 @@ export class TumuloDetailsComponent implements OnInit {
   tumuloId: any;
 
   concessionario = {
-    id: "",
-    cpf: "",
-    nome: "",
-    cep: "",
-    cidade: "",
-    complemento: "",
-    endereco: "",
-    estado: "",
-    numero: ""
+    id: '',
+    cpf: '',
+    rg: '',
+    nome: '',
+    cep: '',
+    cidade: '',
+    complemento: '',
+    endereco: '',
+    estado: '',
+    numero: ''
   };
 
   t: any = {
@@ -42,6 +43,13 @@ export class TumuloDetailsComponent implements OnInit {
     
     this.tumuloId = this.route.snapshot.paramMap.get('tumuloId');
 
+    if(this.tumuloId == "new"){
+
+      this.t = {};
+      this.t.concessionario = this.concessionario;
+
+    }else{
+
     var str = `
     {
         tumulo(where: {id: {_eq: "$tumuloId"}}) {
@@ -49,6 +57,7 @@ export class TumuloDetailsComponent implements OnInit {
           numero_gaveta
           nome
           cpf
+          rg
           data_exumacao
           data_obito
           data_sepultamento
@@ -73,23 +82,24 @@ export class TumuloDetailsComponent implements OnInit {
   
   
 
-    this.apollo
-    .watchQuery({query: gql`${str}`})
-    .valueChanges.subscribe((result: any) => {
-      
-      this.tumuloLst = result.data.tumulo;
-      
-      if(this.tumuloLst != null && this.tumuloLst != undefined && this.tumuloLst.length > 0){
-        this.t =  this.tumuloLst[0];
+      this.apollo
+      .watchQuery({query: gql`${str}`})
+      .valueChanges.subscribe((result: any) => {
+        
+        this.tumuloLst = result.data.tumulo;
+        
+        if(this.tumuloLst != null && this.tumuloLst != undefined && this.tumuloLst.length > 0){
+          this.t =  this.tumuloLst[0];
 
-        if(this.t.concessionario == null){
-          this.t.concessionario = this.concessionario;
+          if(this.t.concessionario == null){
+            this.t.concessionario = this.concessionario;
+          }
         }
-      }
-      console.log(this.t)    
-      this.loading = result.loading;
-      this.error = result.error;
-    });
+        console.log(this.t)    
+        this.loading = result.loading;
+        this.error = result.error;
+      });
+    }
   }
 
   cancel() {
@@ -98,16 +108,19 @@ export class TumuloDetailsComponent implements OnInit {
 
   Salvar() {
     
-    if(this.t.concessionario != null && this.t.concessionario.id != ''){
+    console.log(this.t.concessionario)
+    console.log(this.t.concessionario.id != "")
+    if(this.t.concessionario != null && this.t.concessionario.id != ""){
 
     console.log("this.t.concessionario",this.t.concessionario)
       var strC=`
-      mutation tumulo{
+      mutation concessionario{
         update_concessionario(_set: {
           cep: "$cep", 
           cidade: "$cidade", 
           complemento: "$complemento", 
-          cpf: "$cpf", 
+          cpf: "$cpf",
+          rg: "$rg",
           endereco: "$endereco", 
           estado: "$estado", 
           nome: "$nome", 
@@ -121,6 +134,7 @@ export class TumuloDetailsComponent implements OnInit {
 
       strC = strC.replace("$cep",this.t.concessionario.cep);
       strC = strC.replace("$cpf",this.t.concessionario.cpf);
+      strC = strC.replace("$rg", this.t.concessionario.rg);
       strC = strC.replace("$cidade",this.t.concessionario.cidade);
       strC = strC.replace("$complemento",this.t.concessionario.complemento);
       strC = strC.replace("$endereco",this.t.concessionario.endereco);
@@ -140,16 +154,17 @@ export class TumuloDetailsComponent implements OnInit {
     }else{
       debugger;
       var strConc=`
-      mutation MyMutation {
-        insert_concessionario(objects: {
-          cep: "$cep", 
+
+      mutation concessionario {
+        insert_concessionario(objects: {cep: "$cep", 
           cidade: "$cidade", 
           complemento: "$complemento", 
           cpf: "$cpf", 
+          rg: "$rg", 
           endereco: "$endereco", 
           estado: "$estado", 
           nome: "$nome", 
-          numero: "$numero"}) {
+          numero:"$numero"}) {
           returning {
             id
           }
@@ -160,13 +175,16 @@ export class TumuloDetailsComponent implements OnInit {
       strConc = strConc.replace("$cidade",this.t.concessionario.cidade);
       strConc = strConc.replace("$complemento",this.t.concessionario.complemento);
       strConc = strConc.replace("$endereco",this.t.concessionario.endereco);
+      strConc = strConc.replace("$numero",this.t.concessionario.numero);
       strConc = strConc.replace("$estado",this.t.concessionario.estado);
       strConc = strConc.replace("$nome",this.t.concessionario.nome);
+      strConc = strConc.replace("$rg",this.t.concessionario.rg);
+      strConc = strConc.replace("$cpf",this.t.concessionario.cpf);
       strConc = strConc.replace("$numero",this.t.concessionario.numero);
       strConc = strConc.replace("$concessionario_id",this.t.concessionario.id);
 
 
-      console.log("strC",strC)
+      console.log("strConc",strConc)
 
       this.apollo.mutate({
         mutation:  gql`${strConc}`
@@ -189,10 +207,15 @@ export class TumuloDetailsComponent implements OnInit {
 
   updateTumulo(){
 
-        var str=`
+        var str="";
+        
+        if(this.t.id != null && this.t.id != ""){
+
+          str= `
           mutation tumulo{
             update_tumulo(_set: {
-              cpf: "$cpf", 
+            cpf: "$cpf",
+            rg: "$rg", 
             data_exumacao: "$data_exumacao", 
             data_nascimento: "$data_nascimento", 
             data_sepultamento: "$data_sepultamento", 
@@ -208,10 +231,34 @@ export class TumuloDetailsComponent implements OnInit {
               }
             }
           }`;
+        
+         
+        }else{
+          str= `
+          mutation tumulo{
+            insert_tumulo(objects: {
+            cpf: "$cpf",
+            rg: "$rg", 
+            data_exumacao: "$data_exumacao", 
+            data_nascimento: "$data_nascimento", 
+            data_sepultamento: "$data_sepultamento", 
+            data_obito: "$data_obito", 
+            nome: "$nome", 
+            concessionario_id: "$concessionario_id",
+            numero_atestado_obito: "$numero_atestado_obito", 
+            numero_sepultura: "$numero_sepultura", 
+            numero_gaveta: "$numero_gaveta"}) {
+              returning {
+                id
+              }
+            }
+          }`;
+        }
 
       var dateStr = new Date().getFullYear() + "-"+(new Date().getMonth()+1)+"-"+new Date().getDate();
 
       str = str.replace("$cpf",this.t.cpf);
+      str = str.replace("$rg", this.t.rg);
       
 
       if(this.t.data_nascimento == null ||this.t.data_nascimento == undefined)
@@ -245,7 +292,14 @@ export class TumuloDetailsComponent implements OnInit {
 
       this.apollo.mutate({
         mutation:  gql`${str}`
-      }).subscribe(); 
+      }).subscribe((data : any) => {
+       
+        window.alert("Salvo com sucesso");
+        window.location.href = "/tumulo/";
+
+      },(error) => {
+        console.log('there was an error sending the query', error);
+      }); 
   }
 
 

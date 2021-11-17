@@ -13,6 +13,7 @@ export class TumuloComponent implements OnInit {
   tumuloLst: any[] = [];
   loading = true;
   error: any;
+  filter = "";
 
   constructor(private apollo: Apollo, private _location: Location) {}
 
@@ -26,6 +27,7 @@ export class TumuloComponent implements OnInit {
             numero_gaveta
             nome
             cpf
+            rg
             data_exumacao
             data_obito
             data_sepultamento
@@ -43,7 +45,7 @@ export class TumuloComponent implements OnInit {
     .valueChanges.subscribe((result: any) => {
       
       this.tumuloLst = result.data.tumulo;
-      console.log(this.tumuloLst)
+      
       
       this.loading = result.loading;
       this.error = result.error;
@@ -52,5 +54,59 @@ export class TumuloComponent implements OnInit {
 
   details(tumuloId) {
     window.location.href = "/tumulo/details/"+tumuloId;
+  }
+
+  novo() {
+    window.location.href = "/tumulo/details/new";
+  }
+
+  buscar() {
+    var str=`
+    {
+      tumulo(where: {_or: [
+        {cpf: {_ilike: "%filter%"}},
+        {nome: {_ilike: "%filter%"}},
+        {rg: {_ilike: "%filter%"}},
+        {numero_sepultura: {_ilike: "%filter%"}},
+        {numero_atestado_obito: {_ilike: "%filter%"}},
+        {concessionario: {nome: {_ilike: "%filter%"}}},
+        {concessionario: {cpf: {_ilike: "%filter%"}}},
+        {concessionario: {rg: {_ilike: "%filter%"}}}
+
+      ]},limit: 10) {
+        id
+        numero_gaveta
+        nome
+        cpf
+        rg
+        data_exumacao
+        data_obito
+        data_sepultamento
+        numero_sepultura
+        numero_atestado_obito
+        concessionario {
+          id
+          cpf
+          nome
+        }
+      }
+    }
+  `;
+
+    str = str.replace(/filter/g,this.filter);
+
+    
+    this.apollo
+    .watchQuery({
+      query: gql`${str}`
+    })
+    .valueChanges.subscribe((result: any) => {
+      
+      this.tumuloLst = result.data.tumulo;
+      
+      
+      this.loading = result.loading;
+      this.error = result.error;
+    });
   }
 }

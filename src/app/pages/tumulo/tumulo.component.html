@@ -100,16 +100,21 @@
         <form>
           <div class="pl-lg-4">
             <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-10">
                 <div class="form-group">
                   <label class="form-control-label" for="input-username">Busca</label>
-                  <input type="text" id="input-username" class="form-control form-control-alternative">
+                  <input type="text" id="input-username" [(ngModel)]="filter" class="form-control form-control-alternative">
                 </div>
                
               </div>
+              <div class="col-lg-2">
+                <div style="margin-top: 34px">
+                  <a (click)='buscar()' class="btn btn-sm btn-primary  m-1 text-right" style="float: right;">Buscar</a>
+                </div>
+              </div>
             </div>
           </div>
-          <a href="#!" class="btn btn-sm btn-primary  m-1 text-right" style="float: right;">Buscar</a>
+         
         </form>
       </div>
     </div>
@@ -460,7 +465,8 @@
     <div class="col">
       <div class="card bg-default shadow">
         <div class="card-header bg-transparent border-0">
-          <h3 class="text-white mb-0">Informações</h3>
+          <h3 class="text-white mb-0">Informações <a (click)="novo()" class="btn btn-sm btn-primary  m-1 text-right" style="float: right;">Novo</a></h3>
+         
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-dark table-flush">
@@ -469,6 +475,7 @@
                 <th scope="col">Data óbito</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Cpf</th>
+                <th scope="col">Rg</th>
                 <th scope="col">Sepultura</th>
                 <th scope="col">Gaveta</th>
                 <!-- <th scope="col">Users</th>
@@ -499,6 +506,9 @@
                 
                 <td>
                   {{t.cpf}}
+                </td>
+                <td>
+                  {{t.rg}}
                 </td>
                 <td>
                   {{t.numero_sepultura}}
