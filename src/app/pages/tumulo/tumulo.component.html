@@ -93,6 +93,32 @@
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--7">
+
+  <div class="col-xl-8 order-xl-1">
+    <div class="card bg-secondary shadow">
+      <div class="card-body">
+        <form>
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-10">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-username">Busca</label>
+                  <input type="text" id="input-username" [(ngModel)]="filter" class="form-control form-control-alternative">
+                </div>
+               
+              </div>
+              <div class="col-lg-2">
+                <div style="margin-top: 34px">
+                  <a (click)='buscar()' class="btn btn-sm btn-primary  m-1 text-right" style="float: right;">Buscar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </form>
+      </div>
+    </div>
+  </div>
   <!-- Table -->
   <!-- <div class="row">
     <div class="col">
@@ -439,15 +465,19 @@
     <div class="col">
       <div class="card bg-default shadow">
         <div class="card-header bg-transparent border-0">
-          <h3 class="text-white mb-0">Informações</h3>
+          <h3 class="text-white mb-0">Informações <a (click)="novo()" class="btn btn-sm btn-primary  m-1 text-right" style="float: right;">Novo</a></h3>
+         
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-dark table-flush">
             <thead class="thead-dark">
               <tr>
-                <th scope="col">Id</th>
+                <th scope="col">Data óbito</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Localidade</th>
+                <th scope="col">Cpf</th>
+                <th scope="col">Rg</th>
+                <th scope="col">Sepultura</th>
+                <th scope="col">Gaveta</th>
                 <!-- <th scope="col">Users</th>
                 <th scope="col">Completion</th> -->
                 <th scope="col"></th>
@@ -465,17 +495,26 @@
                     </div>
                   </div>
                 </th> -->
+
                 <td>
-                  {{t.id}}
+                  {{t.data_obito}}
                 </td>
+               
                 <td>
                   {{t.nome}}
-                  <!-- <span class="badge badge-dot mr-4">
-                    <i class="bg-warning"></i> pending
-                  </span> -->
+                </td>
+                
+                <td>
+                  {{t.cpf}}
                 </td>
                 <td>
-                  {{t.localidade}}
+                  {{t.rg}}
+                </td>
+                <td>
+                  {{t.numero_sepultura}}
+                </td>
+                <td>
+                  {{t.numero_gaveta}}
                 </td>
                 <!-- <td>
                   <div class="avatar-group">
@@ -509,9 +548,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                      <a class="dropdown-item"  (click)="details(t.id)">Detalhes</a>
                     </div>
                   </div>
                 </td>
