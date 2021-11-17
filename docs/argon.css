@@ -2244,7 +2244,7 @@ pre code
     .table-responsive-sm
     {
         display: block;
-
+        overflow-x: inherit;
         width: 100%;
 
         -webkit-overflow-scrolling: touch;
@@ -2261,7 +2261,7 @@ pre code
     .table-responsive-md
     {
         display: block;
-        /* overflow-x: auto; */
+        overflow-x: inherit;
 
         width: 100%;
 
@@ -2279,7 +2279,7 @@ pre code
     .table-responsive-lg
     {
         display: block;
-        /* overflow-x: auto; */
+        overflow-x: inherit;
 
         width: 100%;
 
@@ -2297,7 +2297,7 @@ pre code
     .table-responsive-xl
     {
         display: block;
-        /* overflow-x: auto; */
+        overflow-x: inherit;
 
         width: 100%;
 
@@ -2313,7 +2313,7 @@ pre code
 .table-responsive
 {
     display: block;
-    /* overflow-x: auto; */
+    overflow-x: inherit;
 
     width: 100%;
 
