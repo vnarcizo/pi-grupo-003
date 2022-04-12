@@ -1,7 +1,7 @@
 <!--
  IMPORTANT: Please use the following link to create a new issue:
 
- https://www.creative-tim.com/new-issue/pi-grupo-003
+ https://www.creative-tim.com/new-issue/pi-univesp
 
 **If your issue was not created using the app above, it will be closed immediately.**
 -->

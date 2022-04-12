@@ -1,5 +1,5 @@
 
-# PI-grupo-003
+# pi-univesp
 
 node=v12.16.1
 
@@ -23,10 +23,10 @@ Linux s390x 64-bit Binary: https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-
 
 
 # Banco de dados
-https://pi-grupo-003-api.herokuapp.com/console
+https://pi-univesp-api.herokuapp.com/console
 
 # Aplicação em "Produção"
-https://pi-grupo-003.herokuapp.com/
+https://pi-univesp.herokuapp.com/
 
 # Rodar local
 npm install

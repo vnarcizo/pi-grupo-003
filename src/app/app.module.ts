@@ -50,7 +50,7 @@ import { GraphQLModule } from './shared/graphql/graphql.module';
       return {
         cache: new InMemoryCache(),
         link: httpLink.create({
-          uri: 'https://pi-grupo-003-api.herokuapp.com/v1/graphql',
+          uri: 'https://pi-univesp-api.herokuapp.com/v1/graphql',
         }),
       };
     },

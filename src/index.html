@@ -4,9 +4,9 @@
 * Argon Dashboard Angular - v1.3.0
 =========================================================
 
-* Product Page: https://www.creative-tim.com/product/pi-grupo-003
+* Product Page: https://www.creative-tim.com/product/pi-univesp
 * Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/pi-grupo-003/blob/master/LICENSE.md)
+* Licensed under MIT (https://github.com/creativetimofficial/pi-univesp/blob/master/LICENSE.md)
 
 * Coded by Creative Tim
 
